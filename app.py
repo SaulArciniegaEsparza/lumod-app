@@ -144,6 +144,10 @@ fname = st.sidebar.file_uploader(
     dates (example: 2000-01-01), prec (precipitation in mm), tmin, tmean, tmax (temperatures in degrees), qt (optional streamflow column in m3/s)."""
 )
 forcings, area, lat, flag = load_file(fname)
+if flag == 1:
+    st.sidebar.success('Forcings were correctly loaded!')
+if flag == 0:
+    st.sidebar.error('Error loading your data!')
 
 model_name = st.sidebar.selectbox("Choose a model", ("", "MILC", "GR4J", "HYMOD", "HBV"))
 model = load_model(model_name)
@@ -305,6 +309,17 @@ else:
     
     st.subheader("Instructions")
     st.markdown("Load your data and choose a model in the left sidebar. Next, change the parameters to improve the results.")
+    st.text("")
+    st.markdown("If you want to use your own data for modeling, you can download the sample file by clicking the button below.")
+    st.markdown("""File must contain records at daily timestep with the following columns' name: 
+    dates (example: 2000-01-01), prec (precipitation in mm), tmin, tmean, tmax (temperatures in degrees), qt (optional streamflow column in m3/s).""")
+    output = convert_df(lumod.load_example(2)[1])
+    st.download_button(
+        label="Download forcings example file",
+        data=output,
+        file_name="Example_Forcings.csv",
+        mime='csv',
+    ) 
 
     st.subheader("How to Cite")
     st.markdown("Coming soon...")
