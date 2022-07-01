@@ -10,8 +10,10 @@ Author:
 """
 
 #%% Import libraries
+import os
 import pandas as pd
 import numpy as np
+from PIL import Image
 
 from plotly.subplots import make_subplots
 import plotly.graph_objs as go
@@ -20,6 +22,7 @@ import streamlit as st
 import lumod
 from lumod import tools
 
+root = os.path.abspath(os.path.dirname(__file__))
 
 #%% Main functions
 @st.cache()
@@ -159,7 +162,9 @@ and [Christian Birkel](https://www.researchgate.net/profile/Christian-Birkel), F
 Observatory of Water and Global Change (OACG).
 
 This is a free application for learning and academic purposes, and can't be used for commercial purposes.
-See the complete LuMod [user guide](https://zaul_ae.gitlab.io/lumod-docs/) or the [GitHub repository](https://gitlab.com/Zaul_AE/lumod)""")
+See the complete LuMod [user guide](https://zaul_ae.gitlab.io/lumod-docs/) or the [GitLab repository](https://gitlab.com/Zaul_AE/lumod)""")
+
+st.sidebar.image(Image.open(os.path.join(root, "img", "logo_01.png")), width=250)
 
 if model is not None:
     simul = model.run(forcings, **parameters)
@@ -323,5 +328,14 @@ else:
 
     st.subheader("How to Cite")
     st.markdown("Coming soon...")
+
+    st.subheader("Acknowledgments")
+    
+    st.markdown("""The [National Council of Science and Technology (CONACYT)](https://conacyt.mx/),
+    the [Leverhulme Trust](https://www.leverhulme.ac.uk/) and the [German Academic Exchange Service (DAAD)](https://www.daad.de/en/)
+    are thanked for partial funding of this work.""")
+
+    st.image(Image.open(os.path.join(root, "img", "logo_02.png")), width=700)
+    
 
 
