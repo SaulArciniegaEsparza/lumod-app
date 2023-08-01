@@ -25,7 +25,7 @@ from lumod import tools
 root = os.path.abspath(os.path.dirname(__file__))
 
 #%% Main functions
-@st.cache()
+@st.cache_data()
 def load_file(filename):
     if filename is not None:
         columns = ["prec", "tmin", "tmean", "tmax"]
@@ -47,7 +47,7 @@ def load_file(filename):
     return forcings, area, lat, flag
 
 
-@st.cache(allow_output_mutation=True)
+@st.cache_data(allow_output_mutation=True)
 def load_model(name):
     if name == "MILC":
         model = lumod.models.MILC()
@@ -131,7 +131,7 @@ def load_options(name, area, lat):
     return parameters
 
 
-@st.cache
+@st.cache_data
 def convert_df(df):
     return df.to_csv().encode('utf-8')
 
