@@ -47,7 +47,7 @@ def load_file(filename):
     return forcings, area, lat, flag
 
 
-@st.cache_data(allow_output_mutation=True)
+@st.cache_resource
 def load_model(name):
     if name == "MILC":
         model = lumod.models.MILC()
