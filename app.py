@@ -264,7 +264,7 @@ if model is not None:
     )
     fig.layout.yaxis1.update({'title': 'Precipitation (mm)'})
     fig.layout.yaxis2.update({'title': 'Streamflow (m3/s)'})
-    st.plotly_chart(fig, use_container_width=True)
+    st.plotly_chart(fig, width="stretch")
 
     # Plot validation
     col1, col2 = st.columns(2)
@@ -276,7 +276,7 @@ if model is not None:
             yaxis_title="Streamflow (m3/s)"
         )
         fig.update_yaxes(type="log")
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     with col2:
         fig = go.Figure(data=dplot4)
@@ -285,7 +285,7 @@ if model is not None:
             xaxis_title="Month",
             yaxis_title="Streamflow (m3/s/month)"
         )
-        st.plotly_chart(fig, use_container_width=True)
+        st.plotly_chart(fig, width="stretch")
 
     # Metrics
     if "qt" in forcings:
@@ -331,7 +331,7 @@ else:
 
     st.subheader("Acknowledgments")
     
-    st.markdown("""The [National Council of Science and Technology (CONACYT)](https://conacyt.mx/),
+    st.markdown("""The [Secretariat of Science, Humanities, Technology and Innovation (Secihti)](https://secihti.mx/),
     the [Leverhulme Trust](https://www.leverhulme.ac.uk/) and the [German Academic Exchange Service (DAAD)](https://www.daad.de/en/)
     are thanked for partial funding of this work.""")
 
